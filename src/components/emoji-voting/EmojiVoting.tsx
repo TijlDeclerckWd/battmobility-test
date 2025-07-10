@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { Box, Button, Grid, Stack, Typography } from '@mui/material'
 import { RestartAlt as ResetIcon } from '@mui/icons-material'
 import { VotingChart } from '../voting-chart/VotingChart'
-import { VotingList } from '../VotingList'
+import { VotingList } from '../voting-list/VotingList'
 import type { EmojiData } from '@/types'
 import { INITIAL_EMOJIS, STORAGE_KEY } from './constant'
 

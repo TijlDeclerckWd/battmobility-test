@@ -10,7 +10,11 @@ import {
   YAxis,
 } from 'recharts'
 import { COLORS } from './constants'
-import type { VotingChartProps } from './types'
+import type { EmojiData } from '@/types'
+
+export interface VotingChartProps {
+  data: Array<EmojiData>
+}
 
 export function VotingChart({ data }: VotingChartProps) {
   const chartData = data.map((item) => ({
@@ -21,12 +25,12 @@ export function VotingChart({ data }: VotingChartProps) {
   return (
     <Paper
       elevation={3}
-      sx={{ 
-        p: { xs: 2, sm: 3 }, 
-        height: '100%', 
-        display: 'flex', 
+      sx={{
+        p: { xs: 2, sm: 3 },
+        height: '100%',
+        display: 'flex',
         flexDirection: 'column',
-        width: '100%'
+        width: '100%',
       }}
     >
       <Typography variant="h5" component="h2" gutterBottom>

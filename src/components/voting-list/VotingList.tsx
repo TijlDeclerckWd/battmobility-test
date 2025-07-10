@@ -8,13 +8,9 @@ import {
   Typography,
 } from '@mui/material'
 import { Add as AddIcon } from '@mui/icons-material'
+import type { EmojiData } from '@/types'
 
-interface EmojiData {
-  emoji: string
-  votes: number
-}
-
-interface VotingListProps {
+export interface VotingListProps {
   data: Array<EmojiData>
   onVote: (emoji: string) => void
 }
