@@ -19,7 +19,7 @@ interface VotingChartProps {
   data: Array<EmojiData>
 }
 
-const COLORS = ['#8884d8', '#82ca9d', '#ffc658', '#ff7c7c', '#8dd1e1']
+const COLORS = ['#43c3c9', '#76d4d9', '#2f989d', '#5e5e5e', '#343434']
 
 export function VotingChart({ data }: VotingChartProps) {
   const chartData = data.map((item) => ({

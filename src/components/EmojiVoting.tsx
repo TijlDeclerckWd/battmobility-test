@@ -55,7 +55,7 @@ export function EmojiVoting() {
   const sortedEmojis = [...emojis].sort((a, b) => b.votes - a.votes)
 
   return (
-    <Container sx={{ p: 3 }}>
+    <Box sx={{ p: 3, maxWidth: '1300px', margin: '0 auto' }}>
       <Stack
         direction="row"
         justifyContent="space-between"
@@ -128,6 +128,6 @@ export function EmojiVoting() {
           <VotingChart data={emojis} />
         </Grid>
       </Grid>
-    </Container>
+    </Box>
   )
 }
