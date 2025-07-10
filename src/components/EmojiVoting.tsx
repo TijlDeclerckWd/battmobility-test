@@ -76,7 +76,7 @@ export function EmojiVoting() {
       </Stack>
 
       <Grid container spacing={3}>
-        <Grid size={{ xs: 12, md: 6 }}>
+        <Grid size={{ xs: 12, md: 4 }}>
           <Paper elevation={3} sx={{ p: 3, height: '100%' }}>
             <Stack spacing={2}>
               {sortedEmojis.map((item) => {
@@ -124,7 +124,7 @@ export function EmojiVoting() {
             </Stack>
           </Paper>
         </Grid>
-        <Grid size={{ xs: 12, md: 6 }}>
+        <Grid size={{ xs: 12, md: 8 }}>
           <VotingChart data={emojis} />
         </Grid>
       </Grid>

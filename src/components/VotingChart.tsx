@@ -28,11 +28,11 @@ export function VotingChart({ data }: VotingChartProps) {
   }))
 
   return (
-    <Paper elevation={3} sx={{ p: 3, height: '100%' }}>
+    <Paper elevation={3} sx={{ p: 3, height: '100%', display: 'flex', flexDirection: 'column' }}>
       <Typography variant="h5" component="h2" gutterBottom>
         Vote Distribution
       </Typography>
-      <Box sx={{ width: '100%', height: 400 }}>
+      <Box sx={{ width: '100%', flex: 1, minHeight: 400 }}>
         <ResponsiveContainer>
           <BarChart
             data={chartData}
