@@ -9,17 +9,8 @@ import {
   XAxis,
   YAxis,
 } from 'recharts'
-
-interface EmojiData {
-  emoji: string
-  votes: number
-}
-
-interface VotingChartProps {
-  data: Array<EmojiData>
-}
-
-const COLORS = ['#43c3c9', '#76d4d9', '#2f989d', '#5e5e5e', '#343434']
+import { COLORS } from './constants'
+import type { VotingChartProps } from './types'
 
 export function VotingChart({ data }: VotingChartProps) {
   const chartData = data.map((item) => ({
@@ -28,18 +19,27 @@ export function VotingChart({ data }: VotingChartProps) {
   }))
 
   return (
-    <Paper elevation={3} sx={{ p: 3, height: '100%', display: 'flex', flexDirection: 'column' }}>
+    <Paper
+      elevation={3}
+      sx={{ 
+        p: { xs: 2, sm: 3 }, 
+        height: '100%', 
+        display: 'flex', 
+        flexDirection: 'column',
+        width: '100%'
+      }}
+    >
       <Typography variant="h5" component="h2" gutterBottom>
         Vote Distribution
       </Typography>
       <Box sx={{ width: '100%', flex: 1, minHeight: 400 }}>
-        <ResponsiveContainer>
+        <ResponsiveContainer width="100%" height="100%">
           <BarChart
             data={chartData}
             margin={{
               top: 20,
-              right: 30,
-              left: 20,
+              right: 10,
+              left: 10,
               bottom: 5,
             }}
           >

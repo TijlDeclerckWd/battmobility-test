@@ -1,29 +1,10 @@
 import { useEffect, useState } from 'react'
-import {
-  Box,
-  Button,
-  Grid,
-  Stack,
-  Typography,
-} from '@mui/material'
+import { Box, Button, Grid, Stack, Typography } from '@mui/material'
 import { RestartAlt as ResetIcon } from '@mui/icons-material'
-import { VotingChart } from './VotingChart'
-import { VotingList } from './VotingList'
-
-interface EmojiData {
-  emoji: string
-  votes: number
-}
-
-const INITIAL_EMOJIS: Array<EmojiData> = [
-  { emoji: '😁', votes: 0 },
-  { emoji: '🎉', votes: 0 },
-  { emoji: '😢', votes: 0 },
-  { emoji: '😡', votes: 0 },
-  { emoji: '🤯', votes: 0 },
-]
-
-const STORAGE_KEY = 'emoji-votes'
+import { VotingChart } from '../voting-chart/VotingChart'
+import { VotingList } from '../VotingList'
+import type { EmojiData } from '@/types'
+import { INITIAL_EMOJIS, STORAGE_KEY } from './constant'
 
 export function EmojiVoting() {
   const [emojis, setEmojis] = useState<Array<EmojiData>>(() => {
@@ -38,7 +19,9 @@ export function EmojiVoting() {
   const handleVote = (emojiChar: string) => {
     setEmojis((prev) =>
       prev.map((emoji) =>
-        emoji.emoji === emojiChar ? { ...emoji, votes: emoji.votes + 1 } : emoji,
+        emoji.emoji === emojiChar
+          ? { ...emoji, votes: emoji.votes + 1 }
+          : emoji,
       ),
     )
   }
