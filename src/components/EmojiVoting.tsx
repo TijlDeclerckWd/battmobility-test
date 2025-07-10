@@ -5,12 +5,15 @@ import {
   Card,
   CardContent,
   Chip,
+  Container,
+  Grid,
   IconButton,
   Paper,
   Stack,
   Typography,
 } from '@mui/material'
 import { Add as AddIcon, RestartAlt as ResetIcon } from '@mui/icons-material'
+import { VotingChart } from './VotingChart'
 
 interface EmojiData {
   emoji: string
@@ -52,72 +55,79 @@ export function EmojiVoting() {
   const sortedEmojis = [...emojis].sort((a, b) => b.votes - a.votes)
 
   return (
-    <Box sx={{ p: 3 }}>
-      <Paper elevation={3} sx={{ p: 3, mb: 3 }}>
-        <Stack
-          direction="row"
-          justifyContent="space-between"
-          alignItems="center"
-          mb={3}
+    <Container sx={{ p: 3 }}>
+      <Stack
+        direction="row"
+        justifyContent="space-between"
+        alignItems="center"
+        mb={3}
+      >
+        <Typography variant="h4" component="h1">
+          Emoji Voting App
+        </Typography>
+        <Button
+          variant="outlined"
+          color="secondary"
+          startIcon={<ResetIcon />}
+          onClick={handleReset}
         >
-          <Typography variant="h4" component="h1">
-            Emoji Voting App
-          </Typography>
-          <Button
-            variant="outlined"
-            color="secondary"
-            startIcon={<ResetIcon />}
-            onClick={handleReset}
-          >
-            Reset Votes
-          </Button>
-        </Stack>
+          Reset Votes
+        </Button>
+      </Stack>
 
-        <Stack spacing={2}>
-          {sortedEmojis.map((item) => {
-            const originalIndex = emojis.findIndex(
-              (e) => e.emoji === item.emoji,
-            )
-            return (
-              <Card key={item.emoji} variant="outlined">
-                <CardContent>
-                  <Stack
-                    direction="row"
-                    alignItems="center"
-                    justifyContent="space-between"
-                  >
-                    <Stack direction="row" alignItems="center" spacing={2}>
-                      <Typography variant="h2" component="span">
-                        {item.emoji}
-                      </Typography>
-                      <Chip
-                        label={`${item.votes} votes`}
-                        color="primary"
-                        size="medium"
-                      />
-                    </Stack>
-                    <IconButton
-                      color="primary"
-                      onClick={() => handleVote(originalIndex)}
-                      size="large"
-                      sx={{
-                        border: 2,
-                        borderColor: 'primary.main',
-                        '&:hover': {
-                          backgroundColor: 'primary.main',
-                          color: 'white',
-                        },
-                      }}
-                    >
-                      <AddIcon />
-                    </IconButton>
-                  </Stack>
-                </CardContent>
-              </Card>
-            )
-          })}
-        </Stack>
-      </Paper>
-    </Box>
+      <Grid container spacing={3}>
+        <Grid size={{ xs: 12, md: 6 }}>
+          <Paper elevation={3} sx={{ p: 3, height: '100%' }}>
+            <Stack spacing={2}>
+              {sortedEmojis.map((item) => {
+                const originalIndex = emojis.findIndex(
+                  (e) => e.emoji === item.emoji,
+                )
+                return (
+                  <Card key={item.emoji} variant="outlined">
+                    <CardContent>
+                      <Stack
+                        direction="row"
+                        alignItems="center"
+                        justifyContent="space-between"
+                      >
+                        <Stack direction="row" alignItems="center" spacing={2}>
+                          <Typography variant="h2" component="span">
+                            {item.emoji}
+                          </Typography>
+                          <Chip
+                            label={`${item.votes} votes`}
+                            color="primary"
+                            size="medium"
+                          />
+                        </Stack>
+                        <IconButton
+                          color="primary"
+                          onClick={() => handleVote(originalIndex)}
+                          size="large"
+                          sx={{
+                            border: 2,
+                            borderColor: 'primary.main',
+                            '&:hover': {
+                              backgroundColor: 'primary.main',
+                              color: 'white',
+                            },
+                          }}
+                        >
+                          <AddIcon />
+                        </IconButton>
+                      </Stack>
+                    </CardContent>
+                  </Card>
+                )
+              })}
+            </Stack>
+          </Paper>
+        </Grid>
+        <Grid size={{ xs: 12, md: 6 }}>
+          <VotingChart data={emojis} />
+        </Grid>
+      </Grid>
+    </Container>
   )
 }

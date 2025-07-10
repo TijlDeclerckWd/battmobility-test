@@ -1,0 +1,69 @@
+import { Box, Paper, Typography } from '@mui/material'
+import {
+  Bar,
+  BarChart,
+  CartesianGrid,
+  Cell,
+  ResponsiveContainer,
+  Tooltip,
+  XAxis,
+  YAxis,
+} from 'recharts'
+
+interface EmojiData {
+  emoji: string
+  votes: number
+}
+
+interface VotingChartProps {
+  data: Array<EmojiData>
+}
+
+const COLORS = ['#8884d8', '#82ca9d', '#ffc658', '#ff7c7c', '#8dd1e1']
+
+export function VotingChart({ data }: VotingChartProps) {
+  const chartData = data.map((item) => ({
+    name: item.emoji,
+    votes: item.votes,
+  }))
+
+  return (
+    <Paper elevation={3} sx={{ p: 3, height: '100%' }}>
+      <Typography variant="h5" component="h2" gutterBottom>
+        Vote Distribution
+      </Typography>
+      <Box sx={{ width: '100%', height: 400 }}>
+        <ResponsiveContainer>
+          <BarChart
+            data={chartData}
+            margin={{
+              top: 20,
+              right: 30,
+              left: 20,
+              bottom: 5,
+            }}
+          >
+            <CartesianGrid strokeDasharray="3 3" />
+            <XAxis dataKey="name" tick={{ fontSize: 24 }} />
+            <YAxis />
+            <Tooltip
+              contentStyle={{
+                backgroundColor: 'rgba(255, 255, 255, 0.95)',
+                border: '1px solid #ccc',
+                borderRadius: '4px',
+              }}
+            />
+            <Bar dataKey="votes" radius={[8, 8, 0, 0]}>
+              {chartData.map((_, index) => (
+                <Cell
+                  key={`cell-${index}`}
+                  fill={COLORS[index % COLORS.length]}
+                />
+              ))}
+            </Bar>
+          </BarChart>
+        </ResponsiveContainer>
+      </Box>
+    </Paper>
+  )
+}
